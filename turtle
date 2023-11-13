@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+#========================{CABEÇALHO}=======================|
+#
+#AUTOR
+#	wellyton 'welly' <welly.tohn@gmail.com>
+#
+#NOME turtle
+#	gerenciador de pacotes para o sistema operacional 
+#	tinyTurtle
+#
+#DESCRIÇÃO
+#	Esse é o gerenciador de pacotes para o sistema 
+#	operacional tinyTurtle, feito em bash script.
+#
+#LICENÇA 
+# MIT
+#
+#CHANGELOG
+#	VERSÃO 1.0 - beta
+#   Descrição:
+#   Criado o esqueleto do package manager
+#
+#   alterações:
+#   - funções help instalação e desinstalação adicionado
+#   - search adicionado
+#	- update adicionado
+#	- config adicionado
+#
+
+#VARIÁVEIS
+
+uso="
+$(basename $0) {OPTION}
+comandos:
+   $(basename $0) -{command}
+    h | help
+    i | install
+    u | uninstall
+    up| update
+    c | config
+
+    OBS: (-) ou (--) antes dos comandos é opcional
+"
+
+#TRATAMENTO DE CASOS
+case "$1" in
+   "" | -h | h | help | --help) 
+    echo "$uso"
+    ;;
+    -i | i | install | --install)
+        printf "instalando pacote: $2 "
+        #yay -S "$2"
+    ;;
+
+    -u | u | uninstall | --uninstall) 
+        printf "desinstalando pacote: $2 "
+    ;;
+
+    -s | s | search | --search) 
+        printf "lista de pacotes:" 
+    ;;
+
+    -up | up | update | --update)
+        printf "copiando código fonte..."
+    ;;
+
+    -c | c | config | --config)
+        nano ~/.turtle/turtle
+    ;;
+
+    *)
+        printf "opção inválida digite (-h) para mais informações"
+        exit 1
+    ;;
+esac
